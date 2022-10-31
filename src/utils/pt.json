@@ -1,0 +1,31 @@
+{
+    "translation":{
+        "Idioma":"Idioma",
+        "Ecom App para Postos e Combustiveis": "Ecom App para Postos e Combustiveis",
+        "IDIOMA":"IDIOMA",
+        "Selecione o seu Idioma:":"Selecione o seu Idioma:",
+
+
+        "Configurações":"Configurações",
+        "Editar perfil":"Editar perfil",
+        "Segurança":"Segurança",
+        "Notificação":"Notificação",
+        "Sobre":"Sobre",
+        "AJuda":"Ajuda",
+        "Sair":"Sair",
+
+        "dias atrás":"dias atrás",
+
+        "Algum Posto Especifico":"Algum Posto Especifico",
+
+        "FILTROS":"FILTROS",
+        "Tipo de combustível":"Tipo de combustível",
+        "Gasolina":"Gasolina",
+        "Etanol":"Etanol",
+        "Diesel":"Diesel",
+        "Agua":"Agua",
+        "Avaliação":"Avaliação",
+        "Preço":"Preço",
+        "até":"até"
+    }
+}
