@@ -10,6 +10,7 @@ import Segura from './src/pages/Configuracao/Segura';
 import Idioma from './src/pages/Configuracao/Idioma';
 import Notif from './src/pages/Configuracao/Notif';
 import Sobre from './src/pages/Configuracao/Sobre';
+import EditPerfil from "./src/pages/Configuracao/EditPerfil";
 
 
 const Stack = createNativeStackNavigator();
@@ -22,6 +23,7 @@ export default function App() {
 
                 <Stack.Screen options={{headerShown: false,}} name="Routes" component={Routes} />
 
+                <Stack.Screen options={{headerShown: false,}} name="EditPerfil" component={EditPerfil} />
                 <Stack.Screen options={{headerShown: false,}} name="Ajuda" component={Ajuda} />
                 <Stack.Screen options={{headerShown: false,}} name="Sobre" component={Sobre} />
                 <Stack.Screen options={{headerShown: false,}} name="Segura" component={Segura} />

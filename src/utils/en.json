@@ -26,6 +26,19 @@
         "Agua":"Water",
         "Avaliação":"Evaluation",
         "Preço":"Price",
-        "até":"to"
+        "até":"to",
+
+        "AJUDA":"HELP",
+        "ECOM projeto para TCC":" ECOM project for TCC",
+        "Caso duvida, algum problema no app para relatar ou possivel ideia para melhorar o sistema.":" If in doubt, any problem in the app to report or possible idea to improve the system.",
+        "Por favor consulte os Desenvolvedores:":" Please consult the Developers:",
+
+        "SOBRE":"ABOUT",
+        "Aplicativo para facilitar e auxiliar na procura e custo beneficio no preço  do combustivel":" Application to facilitate and assist in the search and cost benefit in the price of fuel",
+        "Desenvolvedores:":" Developers:",
+
+        "Esqueci a Senha ou Alterar a senha":"Forgot Password or Change Password",
+        "ALTERAR FOTO":"CHANGE PHOTO",
+        "Suas Informações":"Your Information"
     }
 }

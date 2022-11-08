@@ -22,7 +22,7 @@ export default function Config({ navigation }) {
       <Image style={styles.perfil} source={{uri: 'https://i.pinimg.com/564x/7e/4f/5c/7e4f5ced8b75dfa364f52a3d7cecd4a3.jpg',}}></Image>
       <Text style={{fontSize: 17,   fontWeight: 'bold',}}>Matt_Murdock </Text>
       <Text style={{color: '#BFBFBF', fontSize: 9}}>DemonioDeHellsKitchen@gmail.com</Text>
-      <TouchableOpacity style={styles.Edit}><Text style={{color: 'white', fontSize: 20,}}>{t('Editar perfil')} </Text></TouchableOpacity>
+      <TouchableOpacity style={styles.Edit} onPress={() =>  navigation.navigate('EditPerfil')}><Text style={{color: 'white', fontSize: 20,}}>{t('Editar perfil')} </Text></TouchableOpacity>
 
   <View style={styles.line} />
 

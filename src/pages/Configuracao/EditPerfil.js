@@ -1,10 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image, TextInput } from 'react-native';
 
 import '../../utils/i18n'
 import { useTranslation } from 'react-i18next'
 
-export default function Sobre({ navigation }) {
+export default function EditPerfil({ navigation }) {
   const {t, i18n} = useTranslation();
   return (
     <View style={styles.container}>
@@ -12,25 +12,29 @@ export default function Sobre({ navigation }) {
           <TouchableOpacity onPress={() => navigation.goBack()}>
                 <Image style={styles.icon} source={{uri: 'https://s3-alpha-sig.figma.com/img/e5c9/0f27/d0b2b78fba43bd52551b2cdd8a1e4967?Expires=1666569600&Signature=X84gvhoXajTbB7SeuGDMewxj7pTBwEr470nlk26Plfa5stP715ahvfaY2lsZlIVd2jZpXHOMS5EQJEMtJ3zFLNrkaMmLk1YZdfAs897o-ckBIhDC7Sp4Wi7BIUpru6fIaiqGKHznFsRboAxckQFp62cicOuVeBKIZTH6lIg~oKOnMIxd4EZfzZ4oQFQXUFc7qjwecxXpfxDGS8cI~mqfr80ZH-o0ccoQi1UttRWgcmR1iOpyFklzj-dCYRr1m8oL7feGzP~uL3zA3E0F4TliVAaSoUdHfVJunLE56wUst8YQc6sO16oOj92DetJ5ASwAd7h5Llu38vRRkI-Lmhg0Sg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',}}></Image>
           </TouchableOpacity>
-          <Text style={styles.Text}>{t('Sobre')} </Text>
+          <Text style={styles.Text}>{t('Editar perfil')} </Text>
       </View>
 
-          <Image style={styles.perfil} source={{uri: 'https://s3-alpha-sig.figma.com/img/741e/b001/3476b0f7f8c8cbc99e3cad0d67a3af48?Expires=1667174400&Signature=bd3MbexjyKUJdDncvtVn7xd8uQs60g0BqEDt-FFo6zf~aVDJQm2szdmIO6A~utyue4ID9WgL3RVU2ClOTxlV~AzXr7ZkcX7LbsLsF0ndtxLKPpg92cw5vmlYofVT4Jld60Bml~SOZeK6qaxEEVzp5~FgpNTcmeU0NeoAWQjn~tCd6WjFf8yErIK2nfjQzez8PvRrtaVRtu48SzwnhzH~fy21saqVm9VNrers-cauCPcX-3WyJSWckW7UvcnyVai0r6ef3tbEFcshJGpUxNG8VaQ84S8b74b84WulJ5XbIRxTn6sRo8Ch2Dsax8fMbf2iSHIWSmxf-adrIip8zkzdVQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',}}></Image>
-          <Text style={{fontSize: 22,   fontWeight: 'bold',}}> {t('SOBRE')} </Text>
+          <TouchableOpacity>
+          <Image style={styles.perfil} source={{uri: 'https://i.pinimg.com/564x/7e/4f/5c/7e4f5ced8b75dfa364f52a3d7cecd4a3.jpg',}}></Image>
+          </TouchableOpacity>
+          <Text style={{fontSize: 22,   fontWeight: 'bold',}}> {t('ALTERAR FOTO')} </Text>
           <View style={styles.line} />
-      <View>
-          <Text> {t('ECOM projeto para TCC')} </Text>
-          <Text>{t('Aplicativo para facilitar e auxiliar na procura e custo beneficio no preço  do combustivel')} </Text>
-            <View style={{marginTop: 20}}>
-                  <Text style={{fontWeight: 'bold',color: '#BFBFBF',}}>{t('Desenvolvedores:')} </Text>
-                  <Text style={styles.ds}>Anderson Gonçalves</Text>
-                  <Text style={styles.ds}>Eduarda Marcondes</Text>
-                  <Text style={styles.ds}>Gabriel Henrique</Text>
-                  <Text style={styles.ds}>Jefferson Monteiro</Text> 
-                  <Text style={styles.ds}>Juliano Narezi</Text> 
-            </View>
+
+
+
+            <View style={styles.DadosUsu}>
+                 <Text style={{fontWeight: 'bold',color: '#BFBFBF', fontSize: 17}}>{t('Suas Informações')}: </Text>
+        <TextInput style={styles.ds} placeholder={t('Nome de Usuario')} placeholderTextColor= '#BFBFBF' ></TextInput>
+        <View style={styles.lineDados} />
+        <TextInput style={styles.ds} placeholder={t('Email')} placeholderTextColor= '#BFBFBF' ></TextInput>
+        <View style={styles.lineDados} />
+
+        <TouchableOpacity ><Text style={{color:"red", marginTop: 30}}>{t('Esqueci a Senha ou Alterar a senha')}*</Text></TouchableOpacity>
+
       </View> 
       <View style={styles.line} />
+      <TouchableOpacity style={styles.Edit}><Text style={{color: 'white', fontSize: 20,}}>{t('Editar perfil')} </Text></TouchableOpacity>
     </View>
   );
 }
@@ -70,15 +74,32 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#62D9AD',
   },
-  line:{ 
+  lineDados:{
+    height: 2,
+    backgroundColor: '#62D9AD',
+    width: '90%',
+  },
+    line:{ 
     height: 3,
-    margin: 20,
+    margin: 15,
     backgroundColor: '#D9D9D9',
     width: '90%',
-},
-  ds:{
-    color: '#BFBFBF',
-
-  }
+    },
+    DadosUsu:{
+        alignItems: "flex-start",
+        width: '80%',
+    },
+    ds:{
+    color: 'Black',
+    marginTop: 30,
+  },
+  Edit:{
+    backgroundColor: '#62D9AD',
+    padding: 15,
+    paddingLeft: '20%',
+    paddingRight: '20%',
+    borderRadius: 360,
+    margin: 20,
+  },
 
 });
