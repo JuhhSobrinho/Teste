@@ -11,7 +11,7 @@ import Idioma from './src/pages/Configuracao/Idioma';
 import Notif from './src/pages/Configuracao/Notif';
 import Sobre from './src/pages/Configuracao/Sobre';
 import EditPerfil from "./src/pages/Configuracao/EditPerfil";
-
+import Card from "./MeuComponente/Card";
 
 const Stack = createNativeStackNavigator();
 
@@ -29,6 +29,8 @@ export default function App() {
                 <Stack.Screen options={{headerShown: false,}} name="Segura" component={Segura} />
                 <Stack.Screen options={{headerShown: false,}} name="Notif" component={Notif} />
                 <Stack.Screen options={{headerShown: false,}} name="Idioma" component={Idioma} />
+                <Stack.Screen options={{headerShown: false,}} name="Card" component={Card} />
+                
 
           </Stack.Navigator>
     </NavigationContainer>

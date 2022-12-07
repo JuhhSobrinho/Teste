@@ -1,45 +1,35 @@
 import React, {useState} from 'react';
-import { StyleSheet, Image, Text, View, TouchableOpacity} from 'react-native';
+import { StyleSheet, Image, Text, View, TouchableOpacity, alert} from 'react-native';
+
+import Checkbox from 'expo-checkbox';
+///npx expo install expo-checkbox 
 
 import '../src/utils/i18n'
 import { useTranslation } from 'react-i18next'
+import Salvo from '../src/pages/salvo';
 
-export default function Card(){
+export default function Card({ navigation }){
 
   const {t, i18n} = useTranslation();
 
-  const [defaultRating, setdefaultRating] = useState(0)
-  const [maxRating, setmaxRating] = useState([1])
 
-  const startImgFilled = 'https://s3-alpha-sig.figma.com/img/ff5c/5ff6/a8ca28fe6f28d2240f76eec3359d36af?Expires=1665360000&Signature=AikqTToOhTQ3GbTC~j8DaJhehr~egbuDRYqGpNSfwUf-jDJsHNfIIGgR~kWZ~yhSvs1OpvDNqCLOnsyed5TQF02LB0z5m2TZkM1luhMzytWzcOTGms4KDon8opdWQsAaV6nO9fpISgG0686HlUxf-Pi6fVrLHCg7YOOdwZdJelmWQn2WnPbHfStfOpfGEJ4dtfQfcGAtzu5szypBdCmRE9qTr0~ld5fUsNLvO~ka5rMZSdL0uqC-j3vvauNKBBZtZuaLnhqnik9WrVjysQyPzEidHkr05ADjQEcfaKqG0yWiwxsd0FqjheUvYnuT0whJfXbGeqQGR1Hs1GNaeNo0cA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'
-  const starImgCorner = 'https://s3-alpha-sig.figma.com/img/ff45/725e/975ca0b7989c9fec716205068e724ce0?Expires=1665360000&Signature=fmC7Dtxjj8CwKA9440tbfGjVZdAKM9PlffygSguuU6NpXMVh~EcfvUBQ8p7trbeEE~2pVG3ZZH9a5VKO-YtXVA-RKt4U9n38RaexARlt~CufBn-vnKVZUQGqVW7yNHSA-EiQc49xnmQgdJOL5sjYouADwAp9msUvVfHDAoZmP1p7NkNggtnuadzuoFM5GP~WTixF1NWAAG02uaI0fgdZAxB6Y2rRoizTdvF~K-Y9A4r5LB6jm1l1qKXoEgffCZEaJM0bBncuk3IMZLCTeegEsJcSTtbKSNQxBrqeuVzrerDjkdOebU2bgyaRTG6r~4aWam1bucpyzv9~Yba8jrPuMA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA' 
+  const salvoon = 'https://raw.githubusercontent.com/JuhhSobrinho/Ecom/main/assets/salvoon.png'
+  const salvooff = 'https://raw.githubusercontent.com/JuhhSobrinho/Ecom/main/assets/salvooff.png' 
 
-  const CustomRatingBar = () => {
+  const [isMaiorq, setMenorq] = useState(false);
+
+  const CustomRatingBar = ({navigation}) => {
     return (
       <View style={styles.customRatingBarstyle}>
-        {
-          maxRating.map((item, key) => {
-            return (
-              <TouchableOpacity
-              activeOpacity={0.7}
-              key={item}
-              onPress={() => setdefaultRating(item)}
-              >
-
-                  <Image style={styles.starImgStyle}  
-                  onPress={() =>{Alert.alert(defaultRating + '/' + maxRating.length);}}
-                  source={
-                    item <= defaultRating
-                    ? {uri: startImgFilled}
-                    : {uri: starImgCorner}
-                  }
-                  />
-
+              <TouchableOpacity onPress={() => navigation.navigate('Salvo',  { nome: 'Parâmetros da Primeira Tela',})}>
+                       
+                  <Image style={styles.starImgStyle} source={isMaiorq ? {uri: salvoon} : {uri: salvooff} || setMenorq ? {uri: salvooff} : {uri: salvoon}} />
+                   <Checkbox style={{height: 15, width: 19}} 
+                   value={isMaiorq} 
+                   onValueChange={setMenorq} 
+                   color='transparent'
+                   />
               </TouchableOpacity>
-            )
-          })
-        }
-
 
       </View>
     )
@@ -63,7 +53,7 @@ export default function Card(){
           </View>
 
 
-          <View style={styles.lineDiv} />
+          <View style={styles.lineDiv}/>
 
 
           <View style={styles.descricao}>
@@ -71,6 +61,7 @@ export default function Card(){
                 <Image
                   style={styles.iconBan}
                   source={require('../assets/shell.png')}
+                  
                  /><Text style={styles.nomePosto}>postos</Text>
               </View>
 
@@ -84,7 +75,7 @@ export default function Card(){
 
           <CustomRatingBar/>
       <Text style={styles.textStyle} onPress={() => setdefaultRating(0)}>
-        {defaultRating + '/' + maxRating.length}
+        {isMaiorq}
       </Text>
 
             <Text style={styles.km}>6,6 km</Text>
@@ -208,8 +199,10 @@ const styles = StyleSheet.create({
   },
   starImgStyle:{
     width: 20,
-    height: 20,
-    resizeMode: 'cover'
+    height: 25,
+    resizeMode: 'cover',
+    position: 'absolute',
+    
   },
   sliderStyle:{
     justifyContent: 'center',

@@ -1,14 +1,79 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, TextInput, Button, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import * as SMS from 'expo-sms'; //npx expo install expo-sms
+import * as Print from 'expo-print'; //npx expo install expo-print
+import * as FileSystem from 'expo-file-system'; //npx expo install expo-file-system
 
-export default function Notif({ navigation }) {
+
+// expo install expo-sms
+
+export default function App() {
+  const [isAvailable, setIsAvailable] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState(undefined);
+  const [recipients, setRecipients] = useState([]);
+  const [message, setMessage] = useState(undefined);
+
+  useEffect(() => {
+    async function checkAvailability() {
+      const isSmsAvailable = await SMS.isAvailableAsync();
+      setIsAvailable(isSmsAvailable);
+    }
+    checkAvailability();
+  }, []);
+
+  const sendSms = async () => {
+    console.log("Generating pdf");
+    const { uri } = await Print.printToFileAsync({
+      html: "<h1>Hi friends</h1>"
+    });
+
+    console.log(uri);
+
+    const contentUri = await FileSystem.getContentUriAsync(uri);
+    console.log(contentUri);
+
+    const {result} = await SMS.sendSMSAsync(
+      recipients,
+      message,
+      {
+        attachments: {
+          uri: contentUri,
+          mimeType: "application/pdf",
+          filename: "Hi.pdf"
+        }
+      }
+    );
+
+    console.log(result);
+  };
+
+  const addNumber = () => {
+    let newRecipients = [...recipients];
+    newRecipients.push(phoneNumber);
+    setRecipients(newRecipients);
+    setPhoneNumber(undefined);
+  };
+
+  const showRecipients = () => {
+    if (recipients.length === 0) {
+      return <Text>No recipients added!</Text>
+    }
+
+    return recipients.map((recipient, index) => {
+      return <Text key={index}>{recipient}</Text>;
+    });
+  };
+
   return (
     <View style={styles.container}>
-      
-      <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Image style={styles.icon} source={{uri: 'https://s3-alpha-sig.figma.com/img/e5c9/0f27/d0b2b78fba43bd52551b2cdd8a1e4967?Expires=1666569600&Signature=X84gvhoXajTbB7SeuGDMewxj7pTBwEr470nlk26Plfa5stP715ahvfaY2lsZlIVd2jZpXHOMS5EQJEMtJ3zFLNrkaMmLk1YZdfAs897o-ckBIhDC7Sp4Wi7BIUpru6fIaiqGKHznFsRboAxckQFp62cicOuVeBKIZTH6lIg~oKOnMIxd4EZfzZ4oQFQXUFc7qjwecxXpfxDGS8cI~mqfr80ZH-o0ccoQi1UttRWgcmR1iOpyFklzj-dCYRr1m8oL7feGzP~uL3zA3E0F4TliVAaSoUdHfVJunLE56wUst8YQc6sO16oOj92DetJ5ASwAd7h5Llu38vRRkI-Lmhg0Sg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',}}></Image>
-          </TouchableOpacity>
-          <Text>Notificação</Text>
+      <TextInput value={phoneNumber} placeholder="Phone Number" onChangeText={(value) => setPhoneNumber(value)} />
+      <Button title='Add Number' onPress={addNumber} />
+      <TextInput value={message} placeholder="Message" onChangeText={(value) => setMessage(value)} />
+      <Text>Recipients:</Text>
+      {showRecipients()}
+      <Button title='Clear Recipients' onPress={() => setRecipients([])} />
+      {isAvailable ? <Button title="Send SMS" onPress={sendSms} /> : <Text>SMS not available</Text>}
       <StatusBar style="auto" />
     </View>
   );
@@ -20,10 +85,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  icon:{
-    margin: 15,
-    width: 35,
-    height: 35,
   },
 });
