@@ -19,7 +19,7 @@ Ola! Sou Juliano e sou iniciante nesse mundo de Programação, msm tendo estudad
 ![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=tokyonight)
 
 ### 😂 Random Dev Meme
-<img src="https://media.tenor.com/OKLkZ1Um5HIAAAAC/mad-typing.gif" width="420px"/>
+<img src="https://media.tenor.com/OKLkZ1Um5HIAAAAC/mad-typing.gif" width="370px"/>
 
 ---
 [![](https://visitcount.itsvg.in/api?id=JuhhSobrinho&icon=6&color=0)](https://visitcount.itsvg.in)
